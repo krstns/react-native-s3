@@ -322,8 +322,8 @@ RCT_EXPORT_METHOD(pause:(int64_t)taskIdentifier) {
 			[self sendEvent:task
 					   type:type
 					  state:@"paused"
-					  bytes:0
-				 totalBytes:0
+					  bytes:task.progress.completedUnitCount
+				 totalBytes:task.progress.totalUnitCount
 					  error:nil];
 		}
 	}];
@@ -339,8 +339,8 @@ RCT_EXPORT_METHOD(resume:(int64_t)taskIdentifier) {
 			[self sendEvent:task
 					   type:type
 					  state:@"in_progress"
-					  bytes:0
-				 totalBytes:0
+					  bytes:task.progress.completedUnitCount
+				 totalBytes:task.progress.totalUnitCount
 					  error:nil];
 		}
 	}];
@@ -355,8 +355,8 @@ RCT_EXPORT_METHOD(cancel:(int64_t)taskIdentifier) {
 			[self sendEvent:task
 					   type:type
 					  state:@"canceled"
-					  bytes:0
-				 totalBytes:0
+					  bytes:task.progress.completedUnitCount
+				 totalBytes:task.progress.totalUnitCount
 					  error:nil];
 		}
 	}];

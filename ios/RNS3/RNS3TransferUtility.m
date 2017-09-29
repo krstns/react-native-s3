@@ -98,7 +98,7 @@ static NSString* instanceKey = @"RNS3TransferUtility";
 		[AWSS3TransferUtility removeS3TransferUtilityForKey:instanceKey];
 	}
 	
-	CredentialType type = [options[@"type"] integerValue];
+	CredentialType type = (int)[options[@"type"] integerValue];
 	id<AWSCredentialsProvider> credentialsProvider;
 	
 	switch (type) {

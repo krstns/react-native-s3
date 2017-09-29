@@ -7,6 +7,6 @@
 
 - (instancetype)initWithAccessKey:(NSString *)accessKey
                         secretKey:(NSString *)secretKey
-                       sessionKey:(NSString *)sessionKey NS_DESIGNATED_INITIALIZER;
+                       sessionKey:(NSString *)sessionKey;
 
 @end

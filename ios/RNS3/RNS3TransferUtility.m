@@ -2,8 +2,8 @@
 #import "RNS3STSCredentialsProvider.h"
 
 static NSMutableDictionary *nativeCredentialsOptions;
-static bool alreadyInitialize = false;
-static bool enabledProgress = true;
+static BOOL alreadyInitialized = NO;
+static BOOL enabledProgress = YES;
 static NSString* instanceKey = @"RNS3TransferUtility";
 
 @interface RNS3TransferUtility ()
@@ -17,8 +17,6 @@ static NSString* instanceKey = @"RNS3TransferUtility";
 @end
 
 @implementation RNS3TransferUtility
-
-@synthesize bridge = _bridge;
 
 + (NSMutableDictionary *)nativeCredentialsOptions {
 	if (nativeCredentialsOptions) {
@@ -192,8 +190,8 @@ RCT_EXPORT_METHOD(enableProgressSent: (BOOL)enabled resolver:(RCTPromiseResolveB
 }
 
 RCT_EXPORT_METHOD(initializeRNS3) {
-	if (alreadyInitialize) return;
-	alreadyInitialize = NO;
+	if (alreadyInitialized) return;
+	alreadyInitialized = YES;
 	__weak typeof(self) weakSelf = self;
 	self.uploadProgress = ^(AWSS3TransferUtilityTask *task, NSProgress *progress) {
 		[weakSelf sendEvent:task

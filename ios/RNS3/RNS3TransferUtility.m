@@ -194,8 +194,9 @@ RCT_EXPORT_METHOD(enableProgressSent: (BOOL)enabled resolver:(RCTPromiseResolveB
 RCT_EXPORT_METHOD(initializeRNS3) {
 	if (alreadyInitialize) return;
 	alreadyInitialize = NO;
+	__weak typeof(self) weakSelf = self;
 	self.uploadProgress = ^(AWSS3TransferUtilityTask *task, NSProgress *progress) {
-		[self sendEvent:task
+		[weakSelf sendEvent:task
 				   type:@"upload"
 				  state:@"in_progress"
 				  bytes:progress.completedUnitCount
@@ -205,7 +206,7 @@ RCT_EXPORT_METHOD(initializeRNS3) {
 	self.completionUploadHandler = ^(AWSS3TransferUtilityUploadTask *task, NSError *error) {
 		NSString *state;
 		if (error) state = @"failed"; else state = @"completed";
-		[self sendEvent:task
+		[weakSelf sendEvent:task
 				   type:@"upload"
 				  state:state
 				  bytes:0
@@ -214,7 +215,7 @@ RCT_EXPORT_METHOD(initializeRNS3) {
 	};
 	
 	self.downloadProgress = ^(AWSS3TransferUtilityTask *task, NSProgress *progress) {
-		[self sendEvent:task
+		[weakSelf sendEvent:task
 				   type:@"download"
 				  state:@"in_progress"
 				  bytes:progress.completedUnitCount
@@ -224,7 +225,7 @@ RCT_EXPORT_METHOD(initializeRNS3) {
 	self.completionDownloadHandler = ^(AWSS3TransferUtilityDownloadTask *task, NSURL *location, NSData *data, NSError *error) {
 		NSString *state;
 		if (error) state = @"failed"; else state = @"completed";
-		[self sendEvent:task
+		[weakSelf sendEvent:task
 				   type:@"download"
 				  state:state
 				  bytes:0

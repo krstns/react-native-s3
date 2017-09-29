@@ -177,20 +177,18 @@ RCT_EXPORT_METHOD(enableProgressSent: (BOOL)enabled resolver:(RCTPromiseResolveB
 	if ([state isEqual: @"in_progress"] && !enabledProgress) {
 		return;
 	}
-	[self.bridge.eventDispatcher
-	 sendAppEventWithName:@"@_RNS3_Events"
-	 body:@{
-			@"task":@{
-					@"id":@(task.taskIdentifier),
-					// @"bucket":[task bucket],
-					// @"key":[task key],
-					@"state":state,
-					@"bytes":@(bytes),
-					@"totalBytes":@(totalBytes)
-					},
-			@"type":type,
-			@"error":errorObj ? errorObj : [NSNull null]
-			}];
+	[self sendEventWithName:@"@_RNS3_Events" body:@{
+		@"task":@{
+			@"id":@(task.taskIdentifier),
+			// @"bucket":[task bucket],
+			// @"key":[task key],
+			@"state":state,
+			@"bytes":@(bytes),
+			@"totalBytes":@(totalBytes)
+		},
+		@"type":type,
+		@"error":errorObj ? errorObj : [NSNull null]
+	}];
 }
 
 RCT_EXPORT_METHOD(initializeRNS3) {

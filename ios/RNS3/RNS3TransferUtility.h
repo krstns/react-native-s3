@@ -1,9 +1,9 @@
 #if __has_include("React/RCTBridgeModule.h")
 #import <React/RCTBridgeModule.h>
-#import <React/RCTEventDispatcher.h>
+#import <React/RCTEventEmitter.h>
 #else
 #import "RCTBridgeModule.h"
-#import "RCTEventDispatcher.h"
+#import "RCTEventEmitter.h"
 #endif
 
 #import <AWSCore/AWSCore.h>
@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, CredentialType) {
     COGNITO
 };
 
-@interface RNS3TransferUtility : NSObject <RCTBridgeModule>
+@interface RNS3TransferUtility : RCTEventEmitter
 + (NSMutableDictionary*)nativeCredentialsOptions;
 + (CredentialType)credentialType: (NSString *)type;
 + (void)interceptApplication: (UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)(void))completionHandler;

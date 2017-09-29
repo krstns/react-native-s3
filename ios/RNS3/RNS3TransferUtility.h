@@ -1,10 +1,10 @@
 // import RCTBridgeModule.h
-#if __has_include("RCTBridgeModule.h")
-#import "RCTBridgeModule.h"
-#import "RCTEventDispatcher.h"
-#else
+#if __has_include("React/RCTBridgeModule.h")
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventDispatcher.h>
+#else
+#import "RCTBridgeModule.h"
+#import "RCTEventDispatcher.h"
 #endif
 
 #import <AWSCore/AWSCore.h>

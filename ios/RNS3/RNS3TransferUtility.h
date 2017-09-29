@@ -18,5 +18,5 @@ typedef NS_ENUM(NSInteger, CredentialType) {
 @interface RNS3TransferUtility : NSObject <RCTBridgeModule>
 + (NSMutableDictionary*)nativeCredentialsOptions;
 + (CredentialType)credentialType: (NSString *)type;
-+ (void)interceptApplication: (UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler;
++ (void)interceptApplication: (UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)(void))completionHandler;
 @end

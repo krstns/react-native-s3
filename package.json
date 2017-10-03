@@ -5,10 +5,9 @@
   "main": "./src/index.js",
   "files": ["android/", "ios/", "src/"],
   "scripts": {
-    "lint": "eslint src test example/*.js",
+    "lint": "eslint src test",
     "test": "npm run lint && mocha",
-    "prepublish": "npm test && ./scripts/download-ios.sh 2.6.2 && rm -rf ./ios/RNS3.xcodeproj/xcuserdata ./ios/RNS3.xcodeproj/project.xcworkspace",
-    "postinstall": "./scripts/download-ios.sh 2.6.2"
+    "prepublish": "npm test && rm -rf ./ios/RNS3.xcodeproj/xcuserdata ./ios/RNS3.xcodeproj/project.xcworkspace"
   },
   "repository": {
     "type": "git",

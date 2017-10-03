@@ -162,6 +162,10 @@ RCT_EXPORT_METHOD(enableProgressSent: (BOOL)enabled resolver:(RCTPromiseResolveB
 	resolve(@YES);
 }
 
+- (NSArray<NSString *> *) supportedEvents {
+	return @[@"@_RNS3_Events"];
+}
+
 - (void) sendEvent:(AWSS3TransferUtilityTask *)task type:(NSString *)type state:(NSString *)state bytes:(int64_t)bytes totalBytes:(int64_t)totalBytes error:(NSError *)error {
 	NSDictionary *errorObj = nil;
 	if (error) {

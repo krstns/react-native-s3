@@ -1,4 +1,4 @@
-import { NativeModules, NativeAppEventEmitter, DeviceEventEmitter, Platform } from "react-native";
+import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 import store from "react-native-simple-store";
 import { normalizeFilePath, snakeCaseKeys } from "./utils";
 
@@ -23,12 +23,7 @@ const storeKey = "@_RNS3_Tasks_Extra";
 let taskExtras;
 const listeners = {};	// [id]: [Function, ...]
 
-let EventEmitter;
-if (Platform.OS === "ios") {
-	EventEmitter = NativeAppEventEmitter;
-} else if (Platform.OS === "android") {
-	EventEmitter = DeviceEventEmitter;
-}
+const EventEmitter = new NativeEventEmitter(RNS3TransferUtility);
 
 EventEmitter.addListener("@_RNS3_Events", async event => {
 	if (!taskExtras) await getTaskExtras();

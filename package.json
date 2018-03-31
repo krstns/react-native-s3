@@ -8,8 +8,8 @@
   "scripts": {
     "lint": "eslint src test example/*.js",
     "test": "npm run lint && mocha",
-    "prepublish": "npm test && ./scripts/download-ios.sh 2.6.11 && rm -rf ./ios/RNS3.xcodeproj/xcuserdata ./ios/RNS3.xcodeproj/project.xcworkspace",
-    "postinstall": "./scripts/download-ios.sh 2.6.11"
+    "prepublish": "npm test && ./scripts/download-ios.sh 2.6.14 && rm -rf ./ios/RNS3.xcodeproj/xcuserdata ./ios/RNS3.xcodeproj/project.xcworkspace",
+    "postinstall": "./scripts/download-ios.sh 2.6.14"
   },
   "repository": {
     "type": "git",
